@@ -24,8 +24,10 @@ void process_image_callback(const sensor_msgs::Image img)
     int pos_y = 0;
 
     for ( ; pos_y < img.height; pos_y++) {
-        for( pos_x = 0; pos_x < img.step; pos_x+=3) {
-            if (img.data[(pos_y * img.step) + pos_x] == white_pixel) {
+        for( pos_x = 0; pos_x < img.step; pos_x += 3) {
+            if ((img.data[(pos_y * img.step) + pos_x] == white_pixel)
+                && (img.data[(pos_y * img.step) + pos_x + 1] == white_pixel)
+                && (img.data[(pos_y * img.step) + pos_x + 2] == white_pixel)) {
                 break;
             }
         }
